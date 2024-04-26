@@ -16,11 +16,13 @@ public class FacilitiesController {
     FacilityRepository facilityRepository;
     @GetMapping("/facilities")
     public List<Facility> getAllFacilities() {
+        System.out.println("return all Facilities.");
         return facilityRepository.findAll();
     }
 
     @GetMapping("/facilities/{id}")
     public Facility getFacilityById(@PathVariable(value = "id") Long fid) {
+        System.out.println("return Facility by id.");
         return facilityRepository.findById(fid).orElseThrow(() -> new ResourceNotFoundException("Facility","id",fid));
     }
 }
