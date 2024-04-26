@@ -1,17 +1,21 @@
 package com.wenzhemin.foodtrunkapi.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.wenzhemin.foodtrunkapi.model.Facility;
+import com.wenzhemin.foodtrunkapi.repository.FacilityRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api")
 public class FacilitiesController {
 
+    @Autowired
+    FacilityRepository facilityRepository;
     @GetMapping("/facilities")
-    public String getAllFacilities() {
-        return "all facilities";
+    public List<Facility> getAllFacilities() {
+        return facilityRepository.findAll();
     }
 
     @GetMapping("/facilities/{id}")
