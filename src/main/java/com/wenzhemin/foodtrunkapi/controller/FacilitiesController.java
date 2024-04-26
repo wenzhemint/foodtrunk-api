@@ -1,5 +1,6 @@
 package com.wenzhemin.foodtrunkapi.controller;
 
+import com.wenzhemin.foodtrunkapi.exception.ResourceNotFoundException;
 import com.wenzhemin.foodtrunkapi.model.Facility;
 import com.wenzhemin.foodtrunkapi.repository.FacilityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ public class FacilitiesController {
     }
 
     @GetMapping("/facilities/{id}")
-    public String getFacilityById(@PathVariable(value = "id") Long fid) {
-        return "facility by id: " + fid;
+    public Facility getFacilityById(@PathVariable(value = "id") Long fid) {
+        return facilityRepository.findById(fid).orElseThrow(() -> new ResourceNotFoundException("Facility","id",fid));
     }
 }
