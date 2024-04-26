@@ -4,6 +4,9 @@ import com.wenzhemin.foodtrunkapi.exception.ResourceNotFoundException;
 import com.wenzhemin.foodtrunkapi.model.Facility;
 import com.wenzhemin.foodtrunkapi.repository.FacilityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,9 +18,12 @@ public class FacilitiesController {
     @Autowired
     FacilityRepository facilityRepository;
     @GetMapping("/facilities")
-    public List<Facility> getAllFacilities() {
+    public List<Facility> getAllFacilities(String address) {
         System.out.println("return all Facilities.");
-        return facilityRepository.findAll();
+
+        Pageable page = PageRequest.of(0, 20, Sort.by("locationid").ascending());
+
+        return facilityRepository.findByAddressLike("%"+address+"%", page);
     }
 
     @GetMapping("/facilities/{id}")
