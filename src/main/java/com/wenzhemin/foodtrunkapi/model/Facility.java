@@ -14,6 +14,11 @@ public class Facility {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long locationid;
+    private String facilityType;
+    private String locationDescription;
     private String address;
     private String location;
+    private Double x;
+    private Double y;
+    private Integer zipCodes;
 }
