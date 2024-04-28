@@ -19,18 +19,30 @@ public class FacilitiesController {
 
     @Autowired
     FacilityRepository facilityRepository;
-    Pageable page = PageRequest.of(0, 20, Sort.by("locationid").ascending());
 
     @GetMapping
-    public Page<Facility> getAllFacilities() {
+    public Page<Facility> getAllFacilities(
+            @RequestParam(required = false, defaultValue = "1") String page,
+            @RequestParam(required = false, defaultValue = "10") String limit
+    ) {
         System.out.println("return all Facilities.");
-        return facilityRepository.findAll(page);
+        int pageIndex = Integer.parseInt(page) - 1;
+        int pageLimit = Integer.parseInt(limit);
+        Pageable pagination = PageRequest.of(pageIndex, pageLimit, Sort.by("locationid").ascending());
+        return facilityRepository.findAll(pagination);
     }
 
     @GetMapping(params = "address")
-    public Page<Facility> getFacilitiesByAddress(@RequestParam String address) {
+    public Page<Facility> getFacilitiesByAddress(
+            @RequestParam(required = false, defaultValue = "1") String page,
+            @RequestParam(required = false, defaultValue = "10") String limit,
+            @RequestParam String address
+    ) {
         System.out.println("return all Facilities by address.");
-        return facilityRepository.findByAddressLike("%"+address+"%", page);
+        int pageIndex = Integer.parseInt(page) - 1;
+        int pageLimit = Integer.parseInt(limit) ;
+        Pageable pagination = PageRequest.of(pageIndex, pageLimit, Sort.by("locationid").ascending());
+        return facilityRepository.findByAddressLike("%"+address+"%", pagination);
     }
 
     @GetMapping("/{id}")
