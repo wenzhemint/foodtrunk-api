@@ -20,5 +20,5 @@ public class Facility {
     private String location;
     private Double x;
     private Double y;
-    private Integer zipCodes;
+    private String zipCodes;
 }

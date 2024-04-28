@@ -60,7 +60,7 @@ CREATE TABLE `food_facility` (
   `fire_prevention_districts` int(11) DEFAULT NULL,
   `police_districts` int(11) DEFAULT NULL,
   `supervisor_districts` int(11) DEFAULT NULL,
-  `zip_codes` int(11) DEFAULT NULL,
+  `zip_codes` text,
   `neighborhoods (old)` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

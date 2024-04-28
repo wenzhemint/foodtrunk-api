@@ -50,7 +50,7 @@ The app will start running at <http://localhost:8080>.
 
 The app provides following APIs.
 
-    GET /api/facilities?address=CALIFORNIA
+    GET /api/facilities?page=1&limit=10&filter=CALIFORNIA
     
     GET /api/facilities/{fid}
 

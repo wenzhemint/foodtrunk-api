@@ -32,17 +32,17 @@ public class FacilitiesController {
         return facilityRepository.findAll(pagination);
     }
 
-    @GetMapping(params = "address")
-    public Page<Facility> getFacilitiesByAddress(
+    @GetMapping(params = "filter")
+    public Page<Facility> getFacilitiesByAddressOrZipCodes(
             @RequestParam(required = false, defaultValue = "1") String page,
             @RequestParam(required = false, defaultValue = "10") String limit,
-            @RequestParam String address
+            @RequestParam String filter
     ) {
-        System.out.println("return all Facilities by address.");
+        System.out.println("return all Facilities by filter.");
         int pageIndex = Integer.parseInt(page) - 1;
         int pageLimit = Integer.parseInt(limit) ;
         Pageable pagination = PageRequest.of(pageIndex, pageLimit, Sort.by("locationid").ascending());
-        return facilityRepository.findByAddressLike("%"+address+"%", pagination);
+        return facilityRepository.findByAddressLikeOrZipCodesLike("%"+filter+"%", "%"+filter+"%", pagination);
     }
 
     @GetMapping("/{id}")

@@ -10,5 +10,6 @@ import java.util.List;
 
 @Repository
 public interface FacilityRepository extends JpaRepository<Facility, Long> {
-    Page<Facility> findByAddressLike(String address, Pageable pageable);
+//    Page<Facility> findByAddressLike(String address, Pageable pageable);
+    Page<Facility> findByAddressLikeOrZipCodesLike(String address, String zipCodes, Pageable pageable);
 }
