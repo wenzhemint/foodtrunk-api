@@ -38,7 +38,7 @@ create database and tables by importing the sql file - `data/foodtrunk_db.sql`
 
 mvn package
 
-java -jar target/easy-notes-1.0.0.jar
+java -jar target/foodtrunk-api-0.0.1-SNAPSHOT.jar
 
 Alternatively, you can run the app without packaging it using -
 
