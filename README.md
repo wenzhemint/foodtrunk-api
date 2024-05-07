@@ -16,7 +16,7 @@ Build Restful API for a simple Facility-Taking api using Spring Boot, Mysql, JPA
 
 2. Maven - 3.9.x
 
-3. Mysql - 7.4.x
+3. Mysql - 5.7.x
 
 ## Steps to Setup
 
